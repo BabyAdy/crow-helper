@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #050505; color: #fafafa; font-family: sans-serif; }
+        .nav-item { cursor: pointer; color: #71717a; font-size: 14px; transition: 0.3s; padding-bottom: 4px; border-bottom: 2px solid transparent; text-decoration: none; }
+        .nav-item:hover { color: #a855f7; }
+        .active { color: #a855f7 !important; border-bottom-color: #a855f7 !important; font-weight: bold; }
+        .info-card { background: #0a0a0a; border: 1px solid #1f2937; border-radius: 12px; padding: 20px; margin-bottom: 20px; transition: 0.3s; }
+        .info-card:hover { border-color: #a855f7; background: #0d0d0d; }
+        .question { color: #a855f7; font-weight: 800; font-size: 1.1rem; margin-bottom: 8px; display: block; }
+        .answer { color: #d1d5db; font-family: 'Courier New', Courier, monospace; background: #111; padding: 10px; border-radius: 6px; display: block; border-left: 3px solid #a855f7; }
+        .staff-img { border: 2px solid #1f2937; border-radius: 8px; margin-top: 15px; max-width: 100%; transition: 0.3s; }
+        .staff-img:hover { border-color: #a855f7; }
+    </style>
+</head>
+<body>
+    <nav class="flex items-center justify-between px-10 py-5 bg-[#0a0a0a] border-b border-zinc-800 sticky top-0 z-50 text-white">
+        <div class="flex items-center gap-10">
+            <div class="text-xl font-black uppercase tracking-tighter">CROW<span class="text-purple-600">HELPER</span></div>
+            <div id="nav-links" class="flex gap-6"></div>
+        </div>
+        <button onclick="logout()" class="text-xs text-red-500 font-bold border border-red-900/30 px-3 py-1.5 rounded-lg hover:bg-red-900/10">LOGOUT</button>
+    </nav>
+
+    <div class="max-w-5xl mx-auto mt-10 p-5">
+        <h1 class="text-3xl font-black mb-8 uppercase italic underline decoration-purple-600 underline-offset-8 text-white">Admin <span class="text-purple-600">Information</span></h1>
+        
+        <div class="info-card">
+            <span class="question">Q: Cum procedez la un codat de Fly?</span>
+            <span class="answer">A: (/spec) ID -> Verifici ping/fps -> (/ban) ID 90 Cheats (Fly)</span>
+            <img src="https://via.placeholder.com/600x300/111/a855f7?text=Exemplu+Fly+Hack+Spec" alt="Fly Hack" class="staff-img">
+        </div>
+
+        <div class="info-card">
+            <span class="question">Q: Sancțiune limbaj vulgar admin chat?</span>
+            <span class="answer">A: (/as) ID -> Warn Admin (Limbaj neadecvat)</span>
+        </div>
+    </div>
+    <script src="nav-logic.js"></script>
+</body>
+</html>

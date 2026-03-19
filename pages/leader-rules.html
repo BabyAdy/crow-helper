@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #050505; color: #fafafa; font-family: sans-serif; }
+        .nav-item { cursor: pointer; color: #71717a; font-size: 14px; transition: 0.3s; padding-bottom: 4px; border-bottom: 2px solid transparent; text-decoration: none; }
+        .nav-item:hover { color: #a855f7; }
+        .active { color: #a855f7 !important; border-bottom-color: #a855f7 !important; font-weight: bold; }
+        .content-card { background: #0a0a0a; border: 1px solid #1f2937; border-radius: 16px; padding: 40px; margin-top: 40px; }
+        .highlight { color: #a855f7; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <nav class="flex items-center justify-between px-10 py-5 bg-[#0a0a0a] border-b border-zinc-800 sticky top-0 z-50">
+        <div class="flex items-center gap-10">
+            <div class="text-xl font-black uppercase tracking-tighter">CROW<span class="text-purple-600">HELPER</span></div>
+            <div id="nav-links" class="flex gap-6"></div>
+        </div>
+        <button onclick="logout()" class="text-xs text-red-500 font-bold border border-red-900/30 px-3 py-1.5 rounded-lg hover:bg-red-900/10 transition-all">LOGOUT</button>
+    </nav>
+
+    <div class="max-w-5xl mx-auto content-card">
+        <div id="page-content">
+            <h1 class="text-4xl font-black mb-6 uppercase italic tracking-tighter text-white">Leader <span class="text-purple-600">Rules</span></h1>
+            <div class="space-y-4 text-zinc-300">
+                <p class="text-xl border-l-4 border-purple-600 pl-4 bg-purple-600/5 py-2">Obligațiile <span class="text-yellow-500 font-bold uppercase">Liderilor de Facțiuni</span></p>
+                <p>1. Mențineți un număr minim de <span class="highlight underline">15 membrii</span> activi în facțiune.</p>
+                <p>2. Sunt <span class="text-red-500 font-bold">INTERZISE</span> testele pe "pile" sau favorizarea membrilor.</p>
+                <p>3. Ședințele trebuie anunțate cu cel puțin <span class="highlight">24 ore</span> înainte.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="nav-logic.js"></script>
+</body>
+</html>

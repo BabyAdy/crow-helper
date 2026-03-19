@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #050505; color: #fafafa; font-family: sans-serif; }
+        .nav-item { cursor: pointer; color: #71717a; font-size: 14px; transition: 0.3s; padding-bottom: 4px; border-bottom: 2px solid transparent; }
+        .nav-item:hover { color: #a855f7; }
+        .active { color: #a855f7 !important; border-bottom-color: #a855f7 !important; font-weight: bold; }
+        .content-card { background: #0a0a0a; border: 1px solid #1f2937; border-radius: 16px; padding: 40px; margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <nav class="flex items-center justify-between px-10 py-5 bg-[#0a0a0a] border-b border-zinc-800 sticky top-0">
+        <div class="flex items-center gap-10">
+            <div class="text-xl font-black uppercase tracking-tighter">CROW<span class="text-purple-600">HELPER</span></div>
+            <div id="nav-links" class="flex gap-6">
+                </div>
+        </div>
+        <button onclick="logout()" class="text-xs text-red-500 font-bold border border-red-900/30 px-3 py-1.5 rounded-lg hover:bg-red-900/10">LOGOUT</button>
+    </nav>
+
+    <div class="max-w-5xl mx-auto content-card">
+        <div id="page-content">
+            <h1 class="text-4xl font-black mb-6 uppercase">Server <span class="text-purple-600">Rules</span></h1>
+            <p class="text-zinc-400 text-lg">Acest regulament se aplică tuturor jucătorilor...</p>
+        </div>
+    </div>
+
+    <script>
+        // SISTEM DE ACCES
+        const lv = parseInt(localStorage.getItem('userLv') || 0);
+        const menu = [
+            { n: 'Server Rules', url: 'server-rules.html', min: 0 },
+            { n: 'Admin Rules', url: 'admin-rules.html', min: 3 },
+            { n: 'Helper Rules', url: 'helper-rules.html', min: 2 },
+            { n: 'Leader Rules', url: 'leader-rules.html', min: 1 },
+            { n: 'Admin Info', url: 'admin-info.html', min: 3 },
+            { n: 'Helper Info', url: 'helper-info.html', min: 2 },
+            { n: 'Leader Info', url: 'leader-info.html', min: 1 }
+        ];
+
+        // Verificăm dacă userul are voie pe pagina asta curentă
+        const currentPage = window.location.pathname.split('/').pop();
+        const pageData = menu.find(m => m.url === currentPage);
+        if (pageData && lv < pageData.min) {
+            alert("Acces restricționat!");
+            window.location.href = '../index.html';
+        }
+
+        // Generăm Navbar
+        const nav = document.getElementById('nav-links');
+        menu.forEach(m => {
+            if (lv >= m.min) {
+                const a = document.createElement('a');
+                a.href = m.url;
+                a.innerText = m.n;
+                a.className = `nav-item ${currentPage === m.url ? 'active' : ''}`;
+                nav.appendChild(a);
+            }
+        });
+
+        function logout() { localStorage.clear(); window.location.href = '../index.html'; }
+    </script>
+</body>
+</html>
