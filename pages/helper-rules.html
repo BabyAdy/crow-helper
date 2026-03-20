@@ -2,13 +2,18 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #050505; color: #fafafa; font-family: sans-serif; }
+        body { background-color: #050505; color: #fafafa; font-family: 'Inter', sans-serif; }
         .nav-item { cursor: pointer; color: #71717a; font-size: 14px; transition: 0.3s; padding-bottom: 4px; border-bottom: 2px solid transparent; text-decoration: none; }
         .nav-item:hover { color: #a855f7; }
         .active { color: #a855f7 !important; border-bottom-color: #a855f7 !important; font-weight: bold; }
-        .content-card { background: #0a0a0a; border: 1px solid #1f2937; border-radius: 16px; padding: 40px; margin-top: 40px; }
+        .rule-card { background: #0a0a0a; border: 1px solid #1f2937; border-right: 4px solid #a855f7; border-radius: 12px; padding: 24px; margin-bottom: 25px; }
+        .section-title { color: #a855f7; font-weight: 900; font-size: 1.3rem; margin-bottom: 15px; display: block; text-transform: uppercase; }
+        .rule-text { color: #d1d5db; line-height: 1.6; margin-bottom: 10px; display: block; white-space: pre-wrap; }
+        .cmd { color: #fbbf24; font-weight: bold; font-family: monospace; } 
+        .warning { color: #ef4444; font-weight: bold; }
         .highlight { color: #a855f7; font-weight: bold; }
     </style>
 </head>
@@ -21,15 +26,98 @@
         <button onclick="logout()" class="text-xs text-red-500 font-bold border border-red-900/30 px-3 py-1.5 rounded-lg hover:bg-red-900/10 transition-all">LOGOUT</button>
     </nav>
 
-    <div class="max-w-5xl mx-auto content-card">
-        <div id="page-content">
-            <h1 class="text-4xl font-black mb-6 uppercase italic tracking-tighter text-white">Helper <span class="text-purple-600">Rules</span></h1>
-            <div class="space-y-4 text-zinc-300">
-                <p class="text-xl border-l-4 border-purple-600 pl-4 bg-purple-600/5 py-2">Ghid de conduită pentru <span class="highlight text-green-400">Helperi</span></p>
-                <p>• Răspundeți la tichete în maxim <span class="highlight">2 minute</span> de la apariție.</p>
-                <p>• Dacă nu cunoașteți un răspuns, întrebați pe <span class="text-blue-400">/hc</span> (Helper Chat).</p>
-                <p>• <span class="text-red-500 font-bold underline">NU</span> ignorați niciun jucător, indiferent de întrebare.</p>
-            </div>
+    <div class="max-w-5xl mx-auto mt-12 px-6 pb-20">
+        <h1 class="text-4xl font-black mb-12 uppercase italic text-white tracking-widest border-l-8 border-purple-600 pl-6">
+            Regulament <span class="text-purple-600">Helperi</span>
+        </h1>
+
+        <div class="rule-card">
+            <span class="section-title">1. Raport de activitate</span>
+            <span class="rule-text"><span class="warning">(!)</span> Raportul săptămânal de activitate al unui helper presupune sprijinirea jucătorilor noi de pe server, un minim de <span class="highlight">7 ore jucate</span> și minim <span class="highlight">300 de răspunsuri</span> (<span class="cmd">/n</span>).</span>
+            <span class="rule-text">Numarul de n-uri nu este definitiv si o sa fie modificat dupa prima saptamana de la deschiderea server-ului pentru a vedea un raport mediu rezonabili pentru toti!</span>
+            <span class="rule-text"><span class="warning">(!)</span> Dacă ești surprins făcând activitate (secunde în /time) fără a fi prezent la PC, chiar și pentru un minut, vei fi sancționat cu remove din funcție (in funcție de gravitate).</span>
+            <span class="rule-text"><span class="warning">(!)</span> Daca exista helperi activi si niciunul dintre voi nu sunteti on-duty in intervalul orar <span class="highlight">08:00-23:59</span> (daca nu sunteti AFK/sleep) veti primi AV la prima abatere | HW la urmatoarele. Daca exista cel putin un helper on-duty si restul isi vad de activitati, nu o sa fie nimeni sanctionat.</span>
+            <span class="rule-text"><span class="warning">(!)</span> Bonus pentru neangajatul lunii (cel mai activ helper pe /n-uri): <span class="highlight">+ 200 Staff Points</span></span>
+            <span class="rule-text italic text-zinc-500">Neangajatul lunii ti se poate oferi o data la 2 luni, daca ai primit luna asta, luna viitoare nu poti primi tot tu!</span>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">2. Comportament</span>
+            <span class="rule-text">- Mențineți un limbaj politicos față de jucători și colegii din staff.</span>
+            <span class="rule-text">- Fiți serioși, responsabili și organizați.</span>
+            <span class="rule-text">- Evitați glumele proaste la adresa membrilor staffului, cu excepția cazurilor în care aceștia își exprimă clar acordul.</span>
+            <span class="rule-text">- Respectați indicațiile helperilor superiori și ale administratorilor.</span>
+            <span class="rule-text">- Ajutați jucătorii noi oferindu-le toate informațiile necesare.</span>
+            <span class="rule-text">- Nu vă considerați superiori față de ceilalți jucători din cauza funcției.</span>
+            <span class="rule-text">- Păstrați un limbaj decent pe toate canalele. Jignirile și vulgaritatea atrag sancțiuni, inclusiv remove.</span>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">3. Comenzi și utilizarea lor</span>
+            <span class="rule-text">- <span class="cmd">/slap <id></span> – Se folosește doar dacă un jucător este blocat și cere ajutor sau pentru a vă debloca. Necesită dovadă (video/screenshot).</span>
+            <span class="rule-text">- <span class="cmd">/freeze <id> & /unfreeze <id></span> – Se foloseasc doar la cererea unui admin, la evenimente sau după ora 00:00, cu dovadă clară. Nu vă acordați singuri unfreeze. Abuzul se sancționează.</span>
+            <span class="rule-text">- <span class="cmd">/spec <id></span> – Doar dacă nu sunt admini online sau după ora 00:00. Se folosește pentru începători sau pentru verificarea codurilor. Nu abuzați.</span>
+            <span class="rule-text">- <span class="cmd">/hduty</span> – Pune helperul la datorie.</span>
+            <span class="rule-text">- <span class="cmd">/nskip</span> – Se folosește dacă nu știți răspunsul. Trebuie motiv pe /e și dovadă (screenshot).</span>
+            <span class="rule-text">- <span class="cmd">/n, /nd, /nsend</span> – Răspundeți la întrebări prin /n.</span>
+            <span class="rule-text">- <span class="cmd">/ncurrent</span> – Afișează întrebarea curentă.</span>
+            <span class="rule-text">- <span class="cmd">/nreport</span> – Trimiți întrebarea unui admin.</span>
+            <span class="rule-text">- <span class="cmd">/dad</span> – Șterge un anunț necorespunzător de pe /ad.</span>
+            <span class="rule-text">- <span class="cmd">/admute</span> – Acordă mute pe /ad.</span>
+            <span class="rule-text">- <span class="cmd">/nnext</span> – Preiei o întrebare nouă.</span>
+            <span class="rule-text">- <span class="cmd">/nd</span> – Se folosește dacă întrebarea are caps-lock, simboluri, limbaj inadecvat sau e repetitivă.</span>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">4. Inactivitate</span>
+            <span class="rule-text">Există două tipuri de cerere de inactivitate:</span>
+            <span class="rule-text">- de urgență</span>
+            <span class="rule-text">- de odihnă.</span>
+            <span class="rule-text">În cazul unei urgențe, poți depune o cerere pentru 3–7 zile.</span>
+            <span class="rule-text">Pentru fiecare lună petrecută în staff primești 3 zile de odihnă. Poți folosi acest drept pentru o inactivitate fără un motiv urgent, pe o perioadă de 3–14 zile.</span>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">5. Ghid pentru folosirea comenzilor</span>
+            <span class="rule-text">Folosește comanda <span class="cmd">/n</span> pentru întrebările scrise corect (fără caps-lock, fără exces de litere, fără limbaj vulgar), apoi <span class="cmd">/nsend</span>.</span>
+            <span class="rule-text">Folosește comanda <span class="cmd">/nd</span> dacă întrebarea are caps-lock, simboluri, exces de litere, limbaj vulgar, nu are legătură cu serverul sau a primit deja răspuns pe chat.</span>
+            
+            <span class="section-title mt-6 text-sm">Reguli pentru /dad <id></span>
+            <span class="rule-text">Folosirea comenzii <span class="cmd">/dad <id></span> este permisă în următoarele cazuri:</span>
+            <span class="rule-text">- Limbaj vulgar sau jigniri ușoare</span>
+            <span class="rule-text">- Caps-lock (ex: RECRUTEZ IN CLANUL [AIM]...)</span>
+            <span class="rule-text">- Exces de caractere (ex: vaaaand daxiooooooo loganyyyyyyyyy...)</span>
+            <span class="rule-text">- Link-uri în anunț</span>
+            <span class="rule-text">- Anunț scris la mișto (ex: cumpar capra fabricata in America)</span>
+            <span class="rule-text">- Emoji-uri (ex: :) <3 :* xD)</span>
+            <span class="rule-text">- Anunț fără legătură cu serverul (ex: dati subscribe la canalul meu)</span>
+            <span class="rule-text"><span class="warning">(!)</span> Este permis să anunțe pe /ad giveaway-uri, live-uri sau videoclipuri noi pe server, dar trebuie să respecte regulile de mai sus.</span>
+            <span class="rule-text"><span class="warning">(!)</span> Dacă unui jucător i-ai dat /dad și repetă anunțul, folosești din nou /dad și comanda <span class="cmd">/hre <id> Next /admute</span>. La a treia abatere, aplici /admute cu motivul: /ad aiurea.</span>
+            <span class="rule-text"><span class="warning">(!)</span> Abuzul comenzii /dad se sancționează cu Helper Warn sau Remove, în funcție de gravitate.</span>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">6. Informații despre /nmute</span>
+            <span class="rule-text">Nu aveți voie să dați /mute jucătorilor. Dacă este nevoie, aduceți dovezi unui admin.</span>
+            <span class="rule-text">Comanda <span class="cmd">/nmute</span> se poate folosi astfel:</span>
+            <span class="rule-text">- /n total aiurea – 5–10 minute mute (ex: sall, cmf boys?)</span>
+            <span class="rule-text">- Limbaj vulgar – 60 minute mute (ex: sugi pula ok)</span>
+            <span class="rule-text">- Întrebări repetitive (de cel puțin 3 ori) – 10 minute mute</span>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">7. Alte informații despre toate functiile de Helper / Admin:</span>
+            <span class="rule-text">- Ca helper, pentru a putea fi considerat un răspuns complet, trebuie să oferiți minimum 3 recompense / beneficii / argumente / soluții.</span>
+            <span class="rule-text">- Aveti la dispozitie maxim <span class="highlight">2 minute</span> sa va corectati la raspunsul gresit oferit pe [/n], in caz contrar o sa primiti sanctiunea maxima conform raspunsului oferit pe [/n].</span>
+            <span class="rule-text">- Nu aveți voie să stați pe 'G' la o mașină când nu sunteți la PC. Dacă nu răspundeți la somații, puteți fi sancționați cu Remove.</span>
+            <span class="rule-text">- Nu aveți voie să jucați pe alte servere RPG. Dacă doriți acest lucru, renunțați la funcție.</span>
+            <span class="rule-text">- Nu aveți voie să asistați la afaceri între jucători. Lăsați adminii să se ocupe.</span>
+            <span class="rule-text">- Nu abuzați de comanda /spec pentru a face secunde AFK. Se consideră fraudare de raport.</span>
+            <span class="rule-text">- Nu răspundeți la întrebări prin /n cu mesaje scurte și fără sens doar ca să le eliminați.</span>
+            <span class="rule-text">– Dacă mai mulți jucători pun aceeași întrebare pe [/n], se răspunde o singură dată public. Restul primesc răspuns pe [/nd], pentru a evita spamul.</span>
+            <span class="rule-text">- Avertismentul Verbal o sa expire dupa o perioada de 15 zile | Helper Warn-ul expira dupa o perioada de 30 de zile | Admin Warn expira dupa o perioada de 30 de zile.</span>
+            <span class="rule-text">- A fost adaugata sanctiunea <span class="highlight">Manager Warn</span> care expira la 60 de zile de la primire, iar la acumularea a 2/2 Manager Warn o sa primiti remove din functia de manageriat.</span>
+            <span class="rule-text">- Orice divulgare de pe discordul staff sau ceva legat de staff poate duce la sanctiune / remove. Chiar daca e un admin si ii spune unui helper o informatie de nu trebuia sa o stie in mod normal tot divulgare este!</span>
         </div>
     </div>
 

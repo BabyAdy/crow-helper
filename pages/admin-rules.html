@@ -2,14 +2,26 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #050505; color: #fafafa; font-family: sans-serif; }
+        body { background-color: #050505; color: #fafafa; font-family: 'Inter', sans-serif; }
         .nav-item { cursor: pointer; color: #71717a; font-size: 14px; transition: 0.3s; padding-bottom: 4px; border-bottom: 2px solid transparent; text-decoration: none; }
         .nav-item:hover { color: #a855f7; }
         .active { color: #a855f7 !important; border-bottom-color: #a855f7 !important; font-weight: bold; }
-        .content-card { background: #0a0a0a; border: 1px solid #1f2937; border-radius: 16px; padding: 40px; margin-top: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .rule-card { background: #0a0a0a; border: 1px solid #1f2937; border-right: 4px solid #a855f7; border-radius: 12px; padding: 24px; margin-bottom: 25px; }
+        .section-title { color: #a855f7; font-weight: 900; font-size: 1.3rem; margin-bottom: 15px; display: block; text-transform: uppercase; }
+        .subsection-title { color: #a855f7; font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; display: block; border-bottom: 1px solid #1f2937; padding-bottom: 4px; }
+        .rule-text { color: #d1d5db; line-height: 1.6; margin-bottom: 10px; display: block; white-space: pre-wrap; }
+        .cmd { color: #fbbf24; font-weight: bold; font-family: monospace; } 
+        .warning { color: #ef4444; font-weight: bold; }
         .highlight { color: #a855f7; font-weight: bold; }
+        .admin { color: #ff0000; font-weight: bold; text-decoration: underline; }
+        .adminlvl { color: #ffa600; font-weight: bold; }
+        .function { color: #fbff02; font-weight: bold; }
+        .bullet-list { list-style-type: none; padding-left: 0; }
+        .bullet-list li { position: relative; padding-left: 20px; margin-bottom: 8px; color: #d1d5db; }
+        .bullet-list li::before { content: "-"; position: absolute; left: 0; color: #a855f7; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -21,16 +33,107 @@
         <button onclick="logout()" class="text-xs text-red-500 font-bold border border-red-900/30 px-3 py-1.5 rounded-lg hover:bg-red-900/10 transition-all">LOGOUT</button>
     </nav>
 
-    <div class="max-w-5xl mx-auto content-card">
-        <div id="page-content">
-            <h1 class="text-4xl font-black mb-6 uppercase italic tracking-tighter text-white">Admin <span class="text-purple-600">Rules</span></h1>
-            <div class="space-y-4 text-zinc-300 leading-relaxed">
-                <p class="text-xl border-l-4 border-purple-600 pl-4 bg-purple-600/5 py-2">Regulament Intern pentru <span class="highlight">Echipa Administrativă</span></p>
-                <p>1. Este strict <span class="text-red-500 font-bold underline text-lg">INTERZIS</span> abuzul de funcție (comenzi folosite în scop personal).</p>
-                <p>2. Adminii trebuie să păstreze un limbaj <span class="highlight italic">exemplar</span> pe toate chat-urile globale.</p>
-                <p>3. Nu aveți voie să favorizați prietenii sau membrii anumitor facțiuni.</p>
-                <p class="text-sm text-zinc-500 mt-10 italic border-t border-zinc-800 pt-4">* Orice încălcare a acestor reguli duce la <span class="text-red-400">Suspendare</span> sau <span class="text-red-400">Remove</span>.</p>
-            </div>
+    <div class="max-w-5xl mx-auto mt-12 px-6 pb-20">
+        <h1 class="text-4xl font-black mb-12 uppercase italic text-white tracking-widest border-l-8 border-purple-600 pl-6">
+            Regulament <span class="text-purple-600">Admini</span>
+        </h1>
+
+        <div class="rule-card">
+            <span class="section-title">1. Raport de activitate</span>
+            <span class="rule-text"><span class="warning">(!)</span> Raportul săptămânal de activitate al unui admin presupune gestionarea sesizărilor (<span class="cmd">/reports</span>), un minim de <span class="highlight">7 ore jucate</span> și <span class="highlight">300 de reporturi rezolvate</span>.</span>
+            <span class="rule-text">Numarul de report-uri nu este definitiv si o sa fie modificat dupa prima saptamana de la deschiderea server-ului pentru a vedea un raport mediu rezonabili pentru toti!</span>
+            <span class="rule-text"><span class="warning">(!)</span> Dacă ești surprins făcând activitate (secunde în /time) fără a fi prezent la PC, chiar și pentru un minut, vei fi sancționat cu <span class="warning underline">remove din funcție</span>.</span>
+        </div>
+
+        <div class="rule-card">
+            <span class="subsection-title">1.1 Functii administrative</span>
+            <span class="rule-text">Adminii pot detine urmatoarele atributii administrative in functie de nivelul de admin detinut:</span>
+            <ul class="bullet-list">
+                <li><span class="admin">Events Team</span> <span class="adminlvl">(Admin 1+)</span> se ocupa cu organizarea de evenimente saptamanale in functie de minimul stabilit de supervisor et. sau in lipsa acestuia de un admin 5+.</li>
+                <li><span class="admin">Manager Factiune</span> <span class="adminlvl">(Admin 1+ de minim 30 zile)</span></li>
+                <li><span class="admin">Cheaters Team</span> <span class="adminlvl">(Admin 2+)</span> se ocupa cu PC Check si bineinteles de partea de codati la diferite activitati PvP.</li>
+                <li><span class="admin">Support Complaints</span> <span class="adminlvl">(Admin 2)</span> se ocupa de reclamatiile impotriva jucatorilor. (exceptie: adminii 3+ nu au nevoie de aceasta functie, le pot inchide oricand)</li>
+                <li><span class="admin">Manager Beta Testeri</span> <span class="adminlvl">(Admin 3+)</span> - se ocupa de beta tester, cu recrutatul lor daca e cazuli, le ofera informatii cu ce sa testeze, le face evidenta lunara pentru a putea sa fie recompensati</li>
+                <li><span class="admin">Manager Content Creator</span> <span class="adminlvl">(Admin 3+)</span> - se ocupa cu evidenta lunara la Content Creatori, le ofera un raport lunar stabilit, ii alege si le da remove.</li>
+                <li><span class="admin">Supervisor ET</span> <span class="adminlvl">(Admin 3+)</span> se ocupa de administrarea echipei events team.</li>
+                <li><span class="admin">Manager Lideri</span> <span class="adminlvl">(Admin 3+)</span></li>
+                <li><span class="admin">Support Unbans</span> <span class="adminlvl">(Admin 3+)</span> se ocupa cu inchiderea unbanurilor facute impotriva adminilor 1-2. O data cu avansarea in nivel de admin la 4 puteti inchide unban-urile adminilor 1-3 si tot asa.</li>
+                <li><span class="admin">Supervisor CT</span> <span class="adminlvl">(Admin 4+)</span> se ocupa cu managerierea CT, cu raportul lor, le poate stabili zile obligatorii de stat la war.</li>
+                <li><span class="admin">Support Tickets</span> <span class="adminlvl">(Admin 4+)</span></li>
+                <li><span class="admin">Manager Helperi</span> <span class="adminlvl">(Admin 4+)</span></li>
+                <li><span class="admin">Supervisor Complaints</span> <span class="adminlvl">(Admin 5)</span> se ocupa cu inchiderea reclamatiilor impotriva adminilor 1-4, fara ai sanctiona in cazul unei greseli si trimiterea problemei unui admin 6+.</li>
+            </ul>
+            <span class="rule-text mt-4">Orice admin level 2 sau 3 poate fi desemnat de un superior pentru instruirea unui helper 3 care a dobandit functia de admin 1. (superior = admin 5+)</span>
+            <span class="rule-text">Orice admin 3+ poate fi desemnat de un superior pentru a-i prezenta unui nou promovat la functia de “support complaints” cum functioneaza panelul, a-i prezenta diferite situatii, si chiar sa-l ajute la primele reclamatii inchise. (superior = admin 5+)</span>
+        </div>
+
+        <div class="rule-card">
+            <span class="subsection-title">1.2 Beneficii functii administrative</span>
+            <span class="rule-text">Toti adminii cu functii administrative vor avea un beneficiu atat la promovare, cat si altele printre care se numara:</span>
+            <ul class="bullet-list">
+                <li>adminii de orice nivel ce au una / mai multe atributii de manageriat vor avea de facut cu <span class="highlight">100 reports mai putin</span> fata de raportul minim stabilit</li>
+                <li>adminii cu functia de Cheaters Team daca au raport in saptamana respectiva de a veni la 2 war-uri / 3, vor avea de efectuat un raport cu <span class="highlight">150 reports mai putin</span> fata de raportul minim stabilit.</li>
+                <li>adminii 3 vor avea de efectuat cu <span class="highlight">200 reports mai putin</span> fata de raportul minim stabilit</li>
+                <li>adminii 4+ nu au un raport de reports (pot face report-uri doar daca nu e un alt admin cu nivel mai mic pe server online in acel moment sau sunt toti AFK)</li>
+                <li>adminii 4+ ce detin una din functiile de mai sus de admin 4+ vor avea de efectuat saptamanal minim 5 ore jucate.</li>
+                <li>adminii 5+ vor avea de efectuat saptamanal minim 3 ore jucate.</li>
+            </ul>
+            <span class="rule-text mt-2 italic text-sm">Daca detii 1 sau mai multe atributii care sa iti ofere mai putine report-uri se va lua in considerare doar cea mai mare scutire de report-uri.</span>
+            
+            <span class="section-title mt-6 text-sm">Bonusuri lunare:</span>
+            <ul class="bullet-list text-sm">
+                <li><span class="admin">Events Team | Supervisor ET</span> : <span class="highlight">+ 200 Staff Points</span></li>
+                <li><span class="admin">Cheaters Team | Supervisor CT</span>: <span class="highlight">+ 225 Staff Points</span></li>
+                <li><span class="admin">Neangajatul lunii</span>: <span class="highlight">+ 200 Staff Points</span></li>
+                <li><span class="admin">Manager de factiune</span>: <span class="highlight">+ 100 Staff Points</span></li>
+                <li><span class="admin">Manager Lideri/Helperi</span>: <span class="highlight">+ 150 Staff Points</span></li>
+                <li><span class="admin">Support Unbans / Complaints</span>: <span class="highlight">+ 150 Staff Points</span></li>
+            </ul>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">2. Comportament</span>
+            <ul class="bullet-list">
+                <li>Mențineți un limbaj politicos față de jucători și colegii din staff.</li>
+                <li>Fiți serioși, responsabili și organizați.</li>
+                <li>Nu faceți glume toxice la adresa altor membri staff fără consimțământul lor.</li>
+                <li>Respectați indicațiile adminilor superiori.</li>
+                <li>Nu vă considerați superiori față de ceilalți jucători din cauza funcției.</li>
+                <li>Comportamentele toxice, limbajul vulgar, reclama sau insultele atrag sancțiuni.</li>
+            </ul>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">5. Ghid de sancțiuni</span>
+            <span class="subsection-title text-sm">5.1 Limbajul pe voice / chat / spam</span>
+            <span class="rule-text">- Limbaj inadecvat: <span class="important">mute 15 minute</span></span>
+            <span class="rule-text">- Limbaj vulgar: <span class="important">mute 30 minute</span></span>
+            <span class="rule-text">- Limbaj extrem de vulgar: <span class="warning">mute 45 minute + Warn</span></span>
+            <span class="rule-text italic text-xs mt-2">Jucatorii la war pot folosi limbaj vulgar fara a fi sanctionati (exceptie limbaj extrem vulgar adresat specific: 45m + warn).</span>
+            <span class="rule-text mt-4 text-orange-400 font-bold">Limbajul vulgar pe voice-chat nu este sanctionat. Earap-ul = ban 3 zile.</span>
+            
+            <span class="subsection-title text-sm mt-6">5.2 Hack-uri si coduri</span>
+            <span class="rule-text">- Aimbot, Rapidfire, Damage Hack: <span class="warning">ban 90 zile</span> (Magic Bullet / Rage = <span class="warning underline">Ban Permanent</span>)</span>
+            <span class="rule-text">- Wallhack: <span class="warning">ban 30 zile</span> (War = <span class="warning">90 zile</span>)</span>
+            <span class="rule-text">- Speed, Fly, Airbrake, TP: <span class="warning">ban 30 zile</span></span>
+            <span class="rule-text">- Trollhack (bubuire masini in masa): <span class="warning underline">Ban Permanent</span></span>
+            <span class="rule-text">- Autoclicker: <span class="warning">ban 7 zile</span> | Route-recording: <span class="warning">ban 14 zile</span></span>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">5.5 Deathmatch, Non-RP, DB, HB</span>
+            <span class="rule-text">- <span class="highlight">DM:</span> inchisoare + retragerea licenţei port-armă.</span>
+            <span class="rule-text">- <span class="highlight">Comportament non-rp:</span> sanctionat cu <span class="warning">warn</span>. Abatere repetata in aceeasi zi = <span class="warning">ban 1 zi</span>.</span>
+            <span class="rule-text">- <span class="highlight">Drive-by (DB) / Heli-Blade (HB):</span> admin jail 30 minute.</span>
+            <span class="rule-text">- <span class="highlight">Kamikaze:</span> <span class="warning">WARN</span> (permis doar pe politisti).</span>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">5.6 Inselatorie, afaceri ilegale</span>
+            <span class="rule-text">- Vânzările/Cumpărare conturi: <span class="warning underline">ban permanent</span>.</span>
+            <span class="rule-text">- Înșelatorii: prima abatere <span class="warning">ban 14 zile</span> | a doua <span class="warning underline">permanent</span>.</span>
+            <span class="rule-text">- Tentative afaceri ilegale chat public: <span class="warning">ban 14 zile</span>.</span>
+            <span class="rule-text">- Distribuire teste factiuni: <span class="warning">ban 7 zile + uninvite</span>.</span>
         </div>
     </div>
 

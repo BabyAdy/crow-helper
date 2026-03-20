@@ -2,14 +2,26 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #050505; color: #fafafa; font-family: sans-serif; }
+        body { background-color: #050505; color: #fafafa; font-family: 'Inter', sans-serif; }
         .nav-item { cursor: pointer; color: #71717a; font-size: 14px; transition: 0.3s; padding-bottom: 4px; border-bottom: 2px solid transparent; text-decoration: none; }
         .nav-item:hover { color: #a855f7; }
         .active { color: #a855f7 !important; border-bottom-color: #a855f7 !important; font-weight: bold; }
-        .content-card { background: #0a0a0a; border: 1px solid #1f2937; border-radius: 16px; padding: 40px; margin-top: 40px; }
+        .rule-card { background: #0a0a0a; border: 1px solid #1f2937; border-right: 4px solid #a855f7; border-radius: 12px; padding: 24px; margin-bottom: 25px; }
+        .section-title { color: #a855f7; font-weight: 900; font-size: 1.3rem; margin-bottom: 15px; display: block; text-transform: uppercase; }
+        .subsection-title { color: #a855f7; font-weight: 700; font-size: 1.1rem; margin-bottom: 10px; display: block; border-bottom: 1px solid #1f2937; padding-bottom: 4px; }
+        .rule-text { color: #d1d5db; line-height: 1.6; margin-bottom: 10px; display: block; white-space: pre-wrap; }
+        .cmd { color: #fbbf24; font-weight: bold; font-family: monospace; } 
+        .warning { color: #ef4444; font-weight: bold; }
         .highlight { color: #a855f7; font-weight: bold; }
+        .admin { color: #ff0000; font-weight: bold; text-decoration: underline; }
+        .adminlvl { color: #ffa600; font-weight: bold; }
+        .function { color: #fbff02; font-weight: bold; }
+        .bullet-list { list-style-type: none; padding-left: 0; }
+        .bullet-list li { position: relative; padding-left: 20px; margin-bottom: 8px; color: #d1d5db; }
+        .bullet-list li::before { content: "-"; position: absolute; left: 0; color: #a855f7; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -21,15 +33,87 @@
         <button onclick="logout()" class="text-xs text-red-500 font-bold border border-red-900/30 px-3 py-1.5 rounded-lg hover:bg-red-900/10 transition-all">LOGOUT</button>
     </nav>
 
-    <div class="max-w-5xl mx-auto content-card">
-        <div id="page-content">
-            <h1 class="text-4xl font-black mb-6 uppercase italic tracking-tighter text-white">Leader <span class="text-purple-600">Rules</span></h1>
-            <div class="space-y-4 text-zinc-300">
-                <p class="text-xl border-l-4 border-purple-600 pl-4 bg-purple-600/5 py-2">Obligațiile <span class="text-yellow-500 font-bold uppercase">Liderilor de Facțiuni</span></p>
-                <p>1. Mențineți un număr minim de <span class="highlight underline">15 membrii</span> activi în facțiune.</p>
-                <p>2. Sunt <span class="text-red-500 font-bold">INTERZISE</span> testele pe "pile" sau favorizarea membrilor.</p>
-                <p>3. Ședințele trebuie anunțate cu cel puțin <span class="highlight">24 ore</span> înainte.</p>
-            </div>
+    <div class="max-w-5xl mx-auto mt-12 px-6 pb-20">
+        <h1 class="text-4xl font-black mb-12 uppercase italic text-white tracking-widest border-l-8 border-purple-600 pl-6">
+            Regulament <span class="text-purple-600">Lideri</span>
+        </h1>
+
+        <div class="rule-card">
+            <span class="section-title">1. Informatii generale</span>
+            <span class="rule-text">Inainte de a aplica pentru functia de lider la o factiune trebuie sa cititi foarte bine si sa cunoasteti complet acest regulament. Acest regulament poate fi modificat periodic de catre un membru staff cu acces.</span>
+            <ul class="bullet-list">
+                <li>Jucatorii pot detine maxim <span class="highlight">2 mandate</span> de lider pe server (exceptie mafii: 5 mandate).</li>
+                <li>Un mandat consta in maxim <span class="highlight">200 de zile</span> (mafii: 150 zile).</li>
+                <li>Dupa terminarea mandatului, poti aplica din nou dupa un minim de <span class="highlight">60 de zile</span>.</li>
+            </ul>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">2. Reguli referitoare la activitate</span>
+            <span class="rule-text">Activitatea minima pentru a nu risca sa fiti inlaturati este de minim <span class="highlight">7 ore jucate saptamanal</span>.</span>
+            <ul class="bullet-list">
+                <li>Un lider trebuie sa petreaca minim <span class="highlight">60 de zile</span> in functie pentru a fi demis cu <span class="function">0/40 FP</span>.</li>
+                <li>Liderii de mafii sunt obligati sa fie prezenti la minim <span class="highlight">2/3 zile de war-uri</span> saptamanale.</li>
+                <li>In timpul war-urilor (<span class="cmd">20:00-22:00</span>), minim un co-lider trebuie sa fie prezent.</li>
+            </ul>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">3. Sanctiuni Lider</span>
+            <span class="rule-text">Sistemul de greseli multiple (<span class="warning">3/3</span>):</span>
+            <ul class="bullet-list">
+                <li><span class="highlight">Mustrarea Verbala (MV):</span> Atentionare usoara, nu se numara la 3/3.</li>
+                <li><span class="highlight">Avertisment Verbal (AV):</span> Expira la <span class="highlight">15 zile</span>. (2 AV = 1 LW).</li>
+                <li><span class="highlight">Leader Warn (LW):</span> Expira la <span class="highlight">30 de zile</span>.</li>
+                <li><span class="warning underline">Abuz de functie:</span> Sanctiune directa cu <span class="warning">Uninvite (100 FP) + Ban Permanent</span>.</li>
+                <li><span class="warning underline">Promovare cheats:</span> Sanctiune <span class="warning">Uninvite + Ban 30 zile</span>.</li>
+            </ul>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">4. Gestiunea Factiunii</span>
+            <span class="subsection-title">4.1 Wipe & Sanctiuni Membri</span>
+            <span class="rule-text">Liderii noi pot acorda <span class="highlight">Wipe</span> (cu 0 FP) membrilor sub 30 zile, in primele 24h de la primirea functiei.</span>
+            <ul class="bullet-list">
+                <li>Daca acordati o sanctiune gresita, aveti <span class="highlight">24h</span> sa o corectati, altfel primiti <span class="admin">Leader Warn</span>.</li>
+                <li>Liderii care isi incurajeaza membrii sa paraseasca factiunea: <span class="admin">Leader Warn</span>.</li>
+            </ul>
+            <span class="subsection-title mt-4">4.2 Sublideri (Rank 6)</span>
+            <ul class="bullet-list">
+                <li>Puteti detine <span class="highlight">2 sublideri</span> simultan (la minim 30 sloturi).</li>
+                <li>Subliderii trebuie sa aiba minim <span class="highlight">35 zile</span> in tipul respectiv de factiune.</li>
+                <li>Demiterea unui co-lider sub 35 zile fara motiv intemeiat: <span class="admin">Avertisment Verbal</span>.</li>
+            </ul>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">5. Reguli referitoare la Demitere</span>
+            <ul class="bullet-list">
+                <li>Membru sub 14 zile: demitere cu <span class="warning">FP</span>.</li>
+                <li>Membru peste 14 zile: demitere cu <span class="function">0 FP</span>.</li>
+                <li>Liderul trebuie sa raspunda la cererea de demisie in maxim <span class="highlight">24 de ore</span>.</li>
+                <li>Comanda <span class="cmd">[/quitgroup]</span> ofera automat <span class="warning">40 FP</span> indiferent de zile.</li>
+            </ul>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">6. Reclamatii</span>
+            <span class="rule-text">Aveti la dispozitie <span class="highlight">48h</span> sa raspundeti/inchideti o reclamatie in cadrul factiunii.</span>
+            <ul class="bullet-list">
+                <li>Co-liderii nu au voie sa isi inchida propriile reclamatii.</li>
+                <li>Daca un lider nu a modificat topicurile la timp: <span class="highlight">Mustrare Verbala</span> (prima abatere) -> <span class="admin">AV / LW</span>.</li>
+            </ul>
+        </div>
+
+        <div class="rule-card">
+            <span class="section-title">7. Lideri de Mafie (Reguli Speciale)</span>
+            <span class="rule-text">Sanctiuni pentru membrii banati (saptamanal):</span>
+            <ul class="bullet-list">
+                <li><span class="highlight">5 membrii banati:</span> <span class="admin">Avertisment Verbal</span>.</li>
+                <li><span class="highlight">10 membrii banati:</span> <span class="admin">Leader Warn</span>.</li>
+                <li><span class="highlight">15 membrii banati:</span> <span class="warning underline">Uninvite</span> (Privilegiere cheats).</li>
+                <li>Sub <span class="highlight">7 membri online</span> la war: <span class="admin">AV / LW / Uninvite</span>.</li>
+            </ul>
         </div>
     </div>
 
