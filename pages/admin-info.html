@@ -2,12 +2,38 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
+    <title>CrowHelper - Admin Info</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body { background-color: #050505; color: #fafafa; font-family: sans-serif; }
         .nav-item { cursor: pointer; color: #71717a; font-size: 14px; transition: 0.3s; padding-bottom: 4px; border-bottom: 2px solid transparent; text-decoration: none; }
         .nav-item:hover { color: #a855f7; }
         .active { color: #a855f7 !important; border-bottom-color: #a855f7 !important; font-weight: bold; }
+        
+        /* Buton Admin AHK Access */
+        .btn-ahk-admin {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(168, 85, 247, 0.1);
+            color: #a855f7;
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .btn-ahk-admin:hover {
+            background: #a855f7;
+            color: white;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+            transform: translateY(-2px);
+        }
+
         .info-card { background: #0a0a0a; border: 1px solid #1f2937; border-radius: 12px; padding: 20px; margin-bottom: 20px; transition: 0.3s; }
         .info-card:hover { border-color: #a855f7; background: #0d0d0d; }
         .question { color: #a855f7; font-weight: 800; font-size: 1.1rem; margin-bottom: 8px; display: block; }
@@ -26,7 +52,15 @@
     </nav>
 
     <div class="max-w-5xl mx-auto mt-10 p-5">
-        <h1 class="text-3xl font-black mb-8 uppercase italic underline decoration-purple-600 underline-offset-8 text-white">Admin <span class="text-purple-600">Information</span></h1>
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-4">
+            <h1 class="text-3xl font-black uppercase italic underline decoration-purple-600 underline-offset-8 text-white">
+                Admin <span class="text-purple-600">Information</span>
+            </h1>
+            
+            <a href="admin-ahk.html" class="btn-ahk-admin">
+                <i class="fa-solid fa-gears"></i> Admin Autohotkey
+            </a>
+        </div>
         
         <div class="info-card">
             <span class="question">Q: Cum procedez la un codat de Fly?</span>

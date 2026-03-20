@@ -1,14 +1,15 @@
 // SISTEM DE ACCES
 const lv = parseInt(localStorage.getItem('userLv') || 0);
 
+// Am adăugat proprietatea 'i' pentru iconițe (Font Awesome)
 const menu = [
-    { n: 'Server Rules', url: 'server-rules.html', min: 0 },
-    { n: 'Admin Rules', url: 'admin-rules.html', min: 3 },
-    { n: 'Helper Rules', url: 'helper-rules.html', min: 2 },
-    { n: 'Leader Rules', url: 'leader-rules.html', min: 1 },
-    { n: 'Admin Info', url: 'admin-info.html', min: 3 },
-    { n: 'Helper Info', url: 'helper-info.html', min: 2 },
-    { n: 'Leader Info', url: 'leader-info.html', min: 1 }
+    { n: 'Server Rules', url: 'server-rules.html', min: 0, i: 'fa-book' },
+    { n: 'Admin Rules', url: 'admin-rules.html', min: 3, i: 'fa-gear' }, // Rotita
+    { n: 'Helper Rules', url: 'helper-rules.html', min: 2, i: 'fa-shield-halved' }, // Scut
+    { n: 'Leader Rules', url: 'leader-rules.html', min: 1, i: 'fa-users' }, // Oameni (potrivit pt lideri)
+    { n: 'Admin Info', url: 'admin-info.html', min: 3, i: 'fa-gear' }, // Rotita
+    { n: 'Helper Info', url: 'helper-info.html', min: 2, i: 'fa-shield-halved' }, // Scut
+    { n: 'Leader Info', url: 'leader-info.html', min: 1, i: 'fa-users' } // Oameni
 ];
 
 // Verificăm dacă userul are voie aici
@@ -27,7 +28,8 @@ if (navContainer) {
         if (lv >= m.min) {
             const a = document.createElement('a');
             a.href = m.url;
-            a.innerText = m.n;
+            // Am schimbat innerText cu innerHTML pentru a permite iconița <i>
+            a.innerHTML = `<i class="fa-solid ${m.i} mr-2"></i> ${m.n}`;
             a.className = `nav-item ${currentPage === m.url ? 'active' : ''}`;
             navContainer.appendChild(a);
         }

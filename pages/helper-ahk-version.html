@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrowHelper - Helper AHK Version</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body { background-color: #050505; color: #fafafa; font-family: 'Inter', sans-serif; }
+        
+        /* Navbar Styles */
+        .nav-item { cursor: pointer; color: #71717a; font-size: 14px; transition: 0.3s; padding-bottom: 4px; border-bottom: 2px solid transparent; text-decoration: none; }
+        .nav-item:hover { color: #a855f7; }
+        .active { color: #a855f7 !important; border-bottom-color: #a855f7 !important; font-weight: bold; }
+
+        /* Accordion Styles */
+        .version-card { 
+            background: #0a0a0a; 
+            border: 1px solid #1f2937; 
+            border-radius: 12px; 
+            margin-bottom: 15px; 
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        
+        .version-header { 
+            padding: 20px 24px; 
+            cursor: pointer; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: #0d0d0d;
+        }
+
+        .version-header:hover { background: #111; border-left: 4px solid #a855f7; }
+
+        .version-content { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.4s ease-out; 
+            background: #080808;
+            padding: 0 24px;
+        }
+
+        .version-content.open { 
+            max-height: 500px; 
+            padding: 20px 24px; 
+            border-top: 1px solid #1f2937;
+        }
+
+        .btn-download-small {
+            background: #a855f7;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.3s;
+        }
+
+        .btn-download-small:hover { background: #9333ea; transform: scale(1.05); }
+
+        .log-list { list-style: none; }
+        .log-list li { position: relative; padding-left: 20px; color: #9ca3af; margin-bottom: 8px; font-size: 14px; }
+        .log-list li::before { content: "•"; position: absolute; left: 0; color: #a855f7; font-weight: bold; }
+        
+        .version-title { font-weight: 800; font-size: 1.1rem; color: #fff; }
+        .version-tag { color: #a855f7; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <nav class="flex items-center justify-between px-10 py-5 bg-[#0a0a0a] border-b border-zinc-800 sticky top-0 z-50 text-white">
+        <div class="flex items-center gap-10">
+            <div class="text-xl font-black uppercase tracking-tighter">CROW<span class="text-purple-600">HELPER</span></div>
+            <div id="nav-links" class="flex gap-6"></div>
+        </div>
+        <button onclick="logout()" class="text-xs text-red-500 font-bold border border-red-900/30 px-3 py-1.5 rounded-lg hover:bg-red-900/10 transition-all">LOGOUT</button>
+    </nav>
+
+    <div class="max-w-4xl mx-auto mt-12 px-6 pb-20">
+        <h1 class="text-4xl font-black mb-10 uppercase italic text-white tracking-widest border-l-8 border-purple-600 pl-6">
+            Changelog <span class="text-purple-600">Helper AHK</span>
+        </h1>
+
+        <div class="version-card">
+            <div class="version-header" onclick="toggleVersion(this)">
+                <div>
+                    <span class="version-title">helper.ahk</span> 
+                    <span class="version-tag">(v0.2)</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="LINK_DOWNLOAD_V02" class="btn-download-small" onclick="event.stopPropagation()">
+                        <i class="fa-solid fa-download"></i> Download
+                    </a>
+                    <i class="fa-solid fa-chevron-down text-zinc-600 transition-transform duration-300"></i>
+                </div>
+            </div>
+            <div class="version-content">
+                <span class="block text-white font-bold mb-3 uppercase text-xs tracking-widest text-purple-500">Update Logs:</span>
+                <ul class="log-list">
+                    <li>Adaugat raspuns pentru intrebare "Cat costa m3 in ds?"</li>
+                    <li>Mici bug fix-uri la sistemul de detectie chat</li>
+                    <li>Imbunatatite raspunsurile rapide (/a1, /a2, /a3)</li>
+                    <li>Sincronizare mai buna cu noul sistem de loguri</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="version-card">
+            <div class="version-header" onclick="toggleVersion(this)">
+                <div>
+                    <span class="version-title">helper.ahk</span> 
+                    <span class="version-tag">(v0.1)</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="LINK_DOWNLOAD_V01" class="btn-download-small" onclick="event.stopPropagation()">
+                        <i class="fa-solid fa-download"></i> Download
+                    </a>
+                    <i class="fa-solid fa-chevron-down text-zinc-600 transition-transform duration-300"></i>
+                </div>
+            </div>
+            <div class="version-content">
+                <span class="block text-white font-bold mb-3 uppercase text-xs tracking-widest text-purple-500">Update Logs:</span>
+                <ul class="log-list">
+                    <li>Creat helper.ahk (Initial Release)</li>
+                    <li>Adaugate raspunsuri pentru intrebarile frecvente</li>
+                    <li>Shortcut-uri pentru unele comenzi administrative</li>
+                    <li>Sistem de auto-update inclus</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Functia care deschide/inchide tab-urile
+        function toggleVersion(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.fa-chevron-down');
+            
+            // Inchide alte tab-uri deschise (Optional)
+            // document.querySelectorAll('.version-content').forEach(c => {
+            //     if(c !== content) c.classList.remove('open');
+            // });
+
+            content.classList.toggle('open');
+            
+            // Roteste iconita
+            if (content.classList.contains('open')) {
+                icon.style.transform = 'rotate(180deg)';
+                header.style.borderLeft = '4px solid #a855f7';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+                header.style.borderLeft = 'none';
+            }
+        }
+    </script>
+    <script src="nav-logic.js"></script>
+</body>
+</html>

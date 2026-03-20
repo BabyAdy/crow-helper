@@ -2,7 +2,10 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
+    <title>CrowHelper - Helper Info</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body { background-color: #050505; color: #fafafa; font-family: sans-serif; }
         
@@ -11,11 +14,33 @@
         .nav-item:hover { color: #a855f7; }
         .active { color: #a855f7 !important; border-bottom-color: #a855f7 !important; font-weight: bold; }
 
+        /* Buton AHK stilizat */
+        .btn-ahk-access {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(168, 85, 247, 0.1);
+            color: #a855f7;
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .btn-ahk-access:hover {
+            background: #a855f7;
+            color: white;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+            transform: translateY(-2px);
+        }
+
         /* Cardul care grupează totul */
         .info-group { 
             background: #0a0a0a; 
             border: 1px solid #1f2937; 
-            border-right: 4px solid #a855f7; /* Dungă mov în dreapta ca în poză */
+            border-right: 4px solid #a855f7; 
             border-radius: 12px; 
             padding: 24px; 
             margin-bottom: 30px; 
@@ -32,7 +57,7 @@
             font-family: 'Consolas', monospace;
         }
 
-        .cmd { color: #fbbf24; font-weight: bold; } /* Galben pentru comenzi */
+        .cmd { color: #fbbf24; font-weight: bold; }
 
         .staff-image { 
             width: 100%; 
@@ -52,9 +77,15 @@
     </nav>
 
     <div class="max-w-5xl mx-auto mt-12 px-6">
-        <h1 class="text-3xl font-black mb-10 uppercase italic text-white tracking-widest">
-            Helper <span class="text-purple-600">Information</span>
-        </h1>
+        <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-4">
+            <h1 class="text-4xl font-black uppercase italic text-white tracking-widest border-l-8 border-purple-600 pl-6">
+                Helper <span class="text-purple-600">Information</span>
+            </h1>
+            
+            <a href="helper-ahk.html" class="btn-ahk-access">
+                <i class="fa-solid fa-shield-heart"></i> Helper Autohotkey
+            </a>
+        </div>
 
         <div class="info-group">
             <span class="question">Q: Vinzi cartofi?</span>
@@ -68,7 +99,7 @@
             <div class="answer-box">
                 <span class="cmd">(/n)</span> Vehicului Ubermacht M3 E30 costa 123.123.123$ in Dealership!
             </div>
-            <img src="https://cdn.discordapp.com/attachments/1393386209807695972/1484253225862430740/image.png?ex=69bd8e09&is=69bc3c89&hm=5f4f38f1e5ac0487b9f489fb3001c88fb43803a1677badd77076f87357ebd851&" alt="Locație DS" class="staff-image">
+            <img src="https://cdn.discordapp.com/attachments/1393386209807695972/1484253225862430740/image.png" alt="Locație DS" class="staff-image">
         </div>
 
         <div class="info-group">
