@@ -2,9 +2,9 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="../favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>CrowHelper - Leader Info</title>
+    <title>Purple Havoc - Leader Info</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         body { background-color: #050505; color: #fafafa; font-family: sans-serif; }
@@ -48,10 +48,9 @@
 <body>
     <nav class="flex items-center justify-between px-10 py-5 bg-[#0a0a0a] border-b border-zinc-800 sticky top-0 z-50">
         <div class="flex items-center gap-10">
-            <div class="text-xl font-black uppercase tracking-tighter">CROW<span class="text-purple-600">HELPER</span></div>
+            <div class="text-xl font-black uppercase tracking-tighter">Purple<span class="text-purple-600">Havoc</span></div>
             <div id="nav-links" class="flex gap-6"></div>
         </div>
-        <button onclick="logout()" class="text-xs text-red-500 font-bold border border-red-900/30 px-3 py-1.5 rounded-lg hover:bg-red-900/10">LOGOUT</button>
     </nav>
 
     <div class="max-w-5xl mx-auto mt-12 px-6">
@@ -83,6 +82,28 @@
 
     </div>
 
-    <script src="nav-logic.js"></script>
+    <script>
+        // NAVIGARE WIKI FĂRĂ RESTRICȚII DE ACCES
+        const menu = [
+            { n: 'Server Rules', url: 'server-rules.html', i: 'fa-book' },
+            { n: 'Admin Rules', url: 'admin-rules.html', i: 'fa-gear' },
+            { n: 'Helper Rules', url: 'helper-rules.html', i: 'fa-shield-halved' },
+            { n: 'Leader Rules', url: 'leader-rules.html', i: 'fa-users' },
+            { n: 'Admin Info', url: 'admin-info.html', i: 'fa-circle-info' },
+            { n: 'Helper Info', url: 'helper-info.html', i: 'fa-circle-info' },
+            { n: 'Leader Info', url: 'leader-info.html', i: 'fa-circle-info' }
+        ];
+
+        const currentPage = window.location.pathname.split('/').pop();
+        const nav = document.getElementById('nav-links');
+        
+        menu.forEach(m => {
+            const a = document.createElement('a');
+            a.href = m.url;
+            a.innerHTML = `<i class="fa-solid ${m.i} mr-2"></i> ${m.n}`;
+            a.className = `nav-item ${currentPage === m.url ? 'active' : ''}`;
+            nav.appendChild(a);
+        });
+    </script>
 </body>
 </html>

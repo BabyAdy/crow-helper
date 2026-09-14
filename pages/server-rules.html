@@ -2,11 +2,12 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="../favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrowHelper - Server Rules</title>
+    <title>Purple Havoc - Server Rules</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="../script.js"></script>
     <style>
         body { background-color: #050505; color: #fafafa; font-family: 'Inter', sans-serif; }
         
@@ -38,17 +39,16 @@
 <body>
     <nav class="flex items-center justify-between px-10 py-5 bg-[#0a0a0a] border-b border-zinc-800 sticky top-0 z-50">
         <div class="flex items-center gap-10">
-            <div class="text-xl font-black uppercase tracking-tighter">CROW<span class="text-purple-600">HELPER</span></div>
+            <div  class="text-xl font-black uppercase tracking-tighter">Purple<span class="text-purple-600">Havoc</span></div>
             <div id="nav-links" class="flex gap-6"></div>
         </div>
-        <button onclick="logout()" class="text-xs text-red-500 font-bold border border-red-900/30 px-3 py-1.5 rounded-lg hover:bg-red-900/10">LOGOUT</button>
     </nav>
 
     <div class="max-w-5xl mx-auto mt-12 px-6 pb-20">
         <h1 class="text-5xl font-black mb-4 uppercase italic text-white tracking-widest border-l-8 border-purple-600 pl-6">
             Regulament <span class="text-purple-600">Server</span>
         </h1>
-        <p class="text-zinc-500 mb-12 italic text-lg ml-8 italic">Crowland - rpg.crowland.ro</p>
+        <p class="text-zinc-500 mb-12 italic text-lg ml-8">Purple Havoc Community</p>
 
         <div class="rule-card">
             <span class="rule-title"><i class="fa-solid fa-comments mr-2"></i> 1. Limbajul si Comportamentul</span>
@@ -163,33 +163,27 @@
     </div>
 
     <script>
-        // SISTEM DE ACCES ȘI NAVIGARE CU ICONIȚE
-        const lv = parseInt(localStorage.getItem('userLv') || 0);
-        
+        // NAVIGARE WIKI FĂRĂ RESTRICȚII DE ACCES
         const menu = [
-            { n: 'Server Rules', url: 'server-rules.html', min: 0, i: 'fa-book' },
-            { n: 'Admin Rules', url: 'admin-rules.html', min: 3, i: 'fa-gear' },
-            { n: 'Helper Rules', url: 'helper-rules.html', min: 2, i: 'fa-shield-halved' },
-            { n: 'Leader Rules', url: 'leader-rules.html', min: 1, i: 'fa-users' },
-            { n: 'Admin Info', url: 'admin-info.html', min: 3, i: 'fa-circle-info' },
-            { n: 'Helper Info', url: 'helper-info.html', min: 2, i: 'fa-circle-info' },
-            { n: 'Leader Info', url: 'leader-info.html', min: 1, i: 'fa-circle-info' }
+            { n: 'Server Rules', url: 'server-rules.html', i: 'fa-book' },
+            { n: 'Admin Rules', url: 'admin-rules.html', i: 'fa-gear' },
+            { n: 'Helper Rules', url: 'helper-rules.html', i: 'fa-shield-halved' },
+            { n: 'Leader Rules', url: 'leader-rules.html', i: 'fa-users' },
+            { n: 'Admin Info', url: 'admin-info.html', i: 'fa-circle-info' },
+            { n: 'Helper Info', url: 'helper-info.html', i: 'fa-circle-info' },
+            { n: 'Leader Info', url: 'leader-info.html', i: 'fa-circle-info' }
         ];
 
         const currentPage = window.location.pathname.split('/').pop();
         const nav = document.getElementById('nav-links');
         
         menu.forEach(m => {
-            if (lv >= m.min) {
-                const a = document.createElement('a');
-                a.href = m.url;
-                a.innerHTML = `<i class="fa-solid ${m.i} mr-2"></i> ${m.n}`;
-                a.className = `nav-item ${currentPage === m.url ? 'active' : ''}`;
-                nav.appendChild(a);
-            }
+            const a = document.createElement('a');
+            a.href = m.url;
+            a.innerHTML = `<i class="fa-solid ${m.i} mr-2"></i> ${m.n}`;
+            a.className = `nav-item ${currentPage === m.url ? 'active' : ''}`;
+            nav.appendChild(a);
         });
-
-        function logout() { localStorage.clear(); window.location.href = '../index.html'; }
     </script>
 </body>
 </html>
